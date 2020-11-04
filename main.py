@@ -2,12 +2,26 @@ import os
 from AtomClass import AtomClass
 import numpy as np
 import matplotlib.pyplot as plt
+import math
 
 protein_coords_folder = "./protein_coords"
 
 
 def normalize(x):
-    return (x - x.min()) / (np.ptp(x))
+    length_of_vector = np.sqrt(np.square(x[0]) + np.square(x[1]) + np.square(x[2]))
+    norm_array = [x[0] / length_of_vector, x[1] / length_of_vector, x[2] / length_of_vector]
+    return norm_array
+
+
+def degrees(rad_angle):
+    if rad_angle is None:
+        return None
+    angle = rad_angle * 180 / math.pi
+    while angle > 180:
+        angle = angle - 360
+    while angle < -180:
+        angle = angle + 360
+    return angle
 
 
 for filename in os.listdir(protein_coords_folder):
@@ -55,7 +69,7 @@ for filename in os.listdir(protein_coords_folder):
                 n1_phi = np.cross(r1_phi, r2_phi)
                 n2_phi = np.cross(r3_phi, r4_phi)
 
-                phi = np.degrees(np.arccos(np.dot(n1_phi, n2_phi)))
+                phi = degrees(np.arccos(np.dot(n1_phi, n2_phi)))
 
                 p1_psi = index_list[i]  # N_0
                 p2_psi = index_list[i + 1]  # CA_0
@@ -77,10 +91,13 @@ for filename in os.listdir(protein_coords_folder):
                 n1_psi = np.cross(r1_psi, r2_psi)
                 n2_psi = np.cross(r3_psi, r4_psi)
 
-                psi = np.degrees(np.arccos(np.dot(n1_psi, n2_psi)))
+                psi = degrees(np.arccos(np.dot(n1_psi, n2_psi)))
 
                 angles_dict[phi] = psi
 
-    plt.scatter(list(angles_dict.keys()), list(angles_dict.values()))
-    plt.axis([-180, 180,-180, 180])
+    plt.scatter(list(angles_dict.keys()), list(angles_dict.values()), s=5)
+    plt.title(filename)
+    # plt.axis([-180, 180, -180, 180])
+    plt.xlabel('Phi')
+    plt.ylabel('Psi')
     plt.show()
