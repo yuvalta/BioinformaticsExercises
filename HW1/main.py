@@ -1,10 +1,10 @@
 import os
-from AtomClass import AtomClass
+from HW1.AtomClass import AtomClass
 import numpy as np
 import matplotlib.pyplot as plt
 import math
 
-protein_coords_folder = "./protein_coords"
+protein_coords_folder = "HW1/protein_coords"
 
 
 def normalize(x):
