@@ -11,4 +11,7 @@ Different folder for each assignment
 - - The HMM (State machine) as follow:
    <img src=./HW2/hmm.png width=60%>
 
+- HW3: folder name ```HW3```
+  - run *main.py* to rotate 1lyd.pdb
+
 
