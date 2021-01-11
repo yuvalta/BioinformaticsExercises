@@ -12,6 +12,7 @@ Different folder for each assignment
    <img src=./HW2/hmm.png width=60%>
 
 - HW3: folder name ```HW3```
-  - run *main.py* to rotate 1lyd.pdb
+  - run *ex2.py* to rotate 1lyd.pdb
+  - run *ex3.py* to create .pdb from distance matrix using SVD
 
 
